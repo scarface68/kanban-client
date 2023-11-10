@@ -5,7 +5,7 @@ A minimal kanban board web app made with MERN stack. Manage all your projects an
 Purpose of this project was to get more practice with MERN stack, creating a RESTFUL Api and backend with ExpressJs. Working with mongodb
 to add CRUD functionalities to the application, and adding user authentication with JsonWebToken.
 
-This repo contains the frontend of the app. Backend repo is [here.](https://github.com/destructo570/kanban-board-backend-rest-api)
+This repo contains the frontend of the app. Backend repo is [here.](https://github.com/scarface68/kanban-server)
 
 ### [🚀 View Demo](https://digital-kanban-board-react.vercel.app/home)
 
