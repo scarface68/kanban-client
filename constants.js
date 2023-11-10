@@ -1,3 +1,4 @@
+// Desc: Constants for the application
 const HOST = process.env.REACT_APP_HOST_URL;
 
 export const Routes = {
