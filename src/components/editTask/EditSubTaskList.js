@@ -11,7 +11,7 @@ import Wrapper from "../common/Wrapper/Wrapper";
 import Button from "../form/button/Button";
 import { getUserThemePref } from "../../helpers/helpers";
 
-export default function EditSubTaskList({ subTaskList, setSubTaskList }) {
+export default function EditSubTaskList({ subTaskList, setSubTaskList, btnText, placeholderTxt }) {
   const isDark = getUserThemePref();
   const addSubTaskClickHandler = () => {
     setSubTaskList((prev) => {
@@ -39,7 +39,7 @@ export default function EditSubTaskList({ subTaskList, setSubTaskList }) {
       <EditSubTaskListItem key={index}>
         <FormInput
           width="100%"
-          placeholder="e.g. This is a subtask."
+          placeholder={placeholderTxt}
           value={item}
           onChange={inputChangeHandler.bind(null, index)}
         />
@@ -55,7 +55,7 @@ export default function EditSubTaskList({ subTaskList, setSubTaskList }) {
   return (
     <Wrapper direction="column" width="100%">
       <EditSubTaskListPane>{subTaskInputItems}</EditSubTaskListPane>
-      <Button title="Add new sub task" onClick={addSubTaskClickHandler} />
+      <Button title={btnText} onClick={addSubTaskClickHandler} />
     </Wrapper>
   );
 }

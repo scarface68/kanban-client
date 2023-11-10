@@ -3,7 +3,7 @@ import Card from "../common/Card/Card";
 import CardSubTitle from "../common/Card/CardSubTitle";
 import CardTitle from "../common/Card/CardTitle";
 import { TaskListItemTitle } from "./styles";
-
+import Label from "./Label";
 import MoreOptions from "../common/moreOptions/MoreOptions";
 
 export default function TaskListItem({
@@ -11,6 +11,8 @@ export default function TaskListItem({
   onTaskClick,
   onTaskEdit,
   onTaskDelete,
+  index,
+  idForKey,
 }) {
   const numOfSubTasks = dataSource.checkList.length;
   let numOfCompletedSubTask = 0;
@@ -32,9 +34,13 @@ export default function TaskListItem({
     e.stopPropagation();
     onTaskDelete(dataSource);
   };
-
   return (
-    <Card width="320px" onClick={onClickHandler}>
+    <Card
+      idForKey={idForKey}
+      index={index}
+      width="320px"
+      onClick={onClickHandler}
+    >
       <TaskListItemTitle>
         <CardTitle>{dataSource.title}</CardTitle>
         <MoreOptions
@@ -44,7 +50,23 @@ export default function TaskListItem({
           ]}
         />
       </TaskListItemTitle>
-      <CardSubTitle>{`${numOfCompletedSubTask} of ${numOfSubTasks} subtasks`}</CardSubTitle>
+      {dataSource.priority && (
+        <Label
+          colour={
+            dataSource.priority === "high"
+              ? "danger"
+              : dataSource.priority === "low"
+              ? "sucess"
+              : "info"
+          }
+          priority={dataSource.priority}
+        />
+      )}
+      {dataSource.due && <Label colour="warning" due={dataSource.due} />}
+      {dataSource.labels && (
+        <Label colour="other" labels={dataSource.labels} />
+      )}
+      <CardSubTitle>{`${numOfCompletedSubTask} of ${numOfSubTasks} subtasks completed`}</CardSubTitle>
     </Card>
   );
 }

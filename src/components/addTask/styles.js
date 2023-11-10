@@ -8,8 +8,8 @@ export const AddTaskPane = styled.section`
   display: flex;
   align-items: center;
   min-height: 80vh;
-  position: fixed;
-  top: 20px;
+  position: absolute;
+  top: 300px;
   bottom: 0;
   left: 0;
   right: 0;

@@ -5,7 +5,8 @@ import { ReactComponent as CloseIconLight } from "../../assets/icons/close-light
 import Wrapper from "../common/Wrapper/Wrapper";
 import Button from "../form/button/Button";
 
-export default function SubTaskList({ subTaskList, setSubTaskList }) {
+export default function 
+SubTaskList({ subTaskList, setSubTaskList, btnText, placeholderTxt }) {
   const addSubTaskClickHandler = () => {
     setSubTaskList((prev) => {
       const newState = [...prev, ""];
@@ -32,7 +33,7 @@ export default function SubTaskList({ subTaskList, setSubTaskList }) {
       <AddSubTaskListItem key={index}>
         <FormInput
           width="100%"
-          placeholder="e.g. This is a subtask."
+          placeholder={placeholderTxt}
           value={item}
           onChange={inputChangeHandler.bind(null, index)}
         />
@@ -44,7 +45,7 @@ export default function SubTaskList({ subTaskList, setSubTaskList }) {
   return (
     <Wrapper direction="column" width="100%">
       <AddSubTaskListPane>{subTaskInputItems}</AddSubTaskListPane>
-      <Button title="Add new sub task" onClick={addSubTaskClickHandler} />
+      <Button title={btnText} onClick={addSubTaskClickHandler} />
     </Wrapper>
   );
 }

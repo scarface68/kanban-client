@@ -5,7 +5,7 @@ export default function ActionButton(props) {
   return (
     <Button onClick={handler}>
       <ImageIcon src={icon} alt="" />
-      <span>{title}</span>
+      <div>{title}</div>
     </Button>
   );
 }

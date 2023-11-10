@@ -25,7 +25,7 @@ export default function HomeContainer({ onSignup, onSignin }) {
         <Wrapper justify="space-between" minHeight="600px">
           <HeroSection direction="column">
             <HeroTitle>Kanban.</HeroTitle>
-            <HeroBody>Stay focused and productive</HeroBody>
+            <HeroBody>Kraftbase Productions</HeroBody>
           </HeroSection>
           <OnboardingForm onSignup={onSignup} onSignin={onSignin} />
         </Wrapper>

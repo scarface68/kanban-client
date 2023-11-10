@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Droppable, DragDropContext } from "react-beautiful-dnd";
 import StatusColumnsItem from "./StatusColumnsItem";
 import { StatusColumnsList } from "./styles";
 
@@ -16,15 +16,19 @@ export default function StatusColumns({
   if (dataSource) {
     content = dataSource?.lists.map((item, index) => {
       return (
-        <StatusColumnsItem
-          key={item._id}
-          dataSource={item}
-          onTaskClick={onTaskClick}
-          onTaskEdit={onTaskEdit}
-          onTaskDelete={onTaskDelete}
-          onListEdit={onListEdit}
-          onListDelete={onListDelete}
-        />
+        <Droppable key={item._id} droppableId={item._id}>
+          {(provided) => (
+            <StatusColumnsItem
+              provided={provided}
+              dataSource={item}
+              onTaskClick={onTaskClick}
+              onTaskEdit={onTaskEdit}
+              onTaskDelete={onTaskDelete}
+              onListEdit={onListEdit}
+              onListDelete={onListDelete}
+            />
+          )}
+        </Droppable>
       );
     });
   }

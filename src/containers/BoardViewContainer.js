@@ -13,7 +13,9 @@ import {
   deleteCard,
   deleteList,
   updateList,
+  updateCardData,
 } from "../store/board-actions";
+import { DragDropContext } from "react-beautiful-dnd";
 
 export default function BoardViewContainer() {
   const activeBoard = useSelector((state) => state.board.activeBoard);
@@ -66,17 +68,41 @@ export default function BoardViewContainer() {
   return (
     <>
       <Wrapper bgColor={isDark ? "#282836" : "#F3F8FF"} minHeight="100%">
-        <BoardView>
-          <StatusColumns
-            dataSource={activeBoard}
-            onTaskClick={taskItemClickHandler}
-            onTaskEdit={taskItemEditHandler}
-            onTaskDelete={taskItemDeleteHandler}
-            onListEdit={onListEdit}
-            onListDelete={listItemDeleteHandler}
-          />
-          <AddNewColumn onAddColumn={toggleShowCreateList} />
-        </BoardView>
+        <DragDropContext
+          onDragEnd={({ source, destination }) => {
+            if (!destination) return;
+            if (
+              source.droppableId === destination.droppableId &&
+              source.index === destination.index
+            )
+              return;
+            if (source.droppableId === destination.droppableId) {
+              return;
+            }
+            const sourceList = activeBoard.lists.filter(
+              (list) => list._id === source.droppableId
+            )[0];
+            const cardToBeMoved = sourceList.cards[source.index];
+            dispatch(
+              updateCardData({
+                ...cardToBeMoved,
+                listId: destination.droppableId,
+              })
+            );
+          }}
+        >
+          <BoardView>
+            <StatusColumns
+              dataSource={activeBoard}
+              onTaskClick={taskItemClickHandler}
+              onTaskEdit={taskItemEditHandler}
+              onTaskDelete={taskItemDeleteHandler}
+              onListEdit={onListEdit}
+              onListDelete={listItemDeleteHandler}
+            />
+            <AddNewColumn onAddColumn={toggleShowCreateList} />
+          </BoardView>
+        </DragDropContext>
       </Wrapper>
 
       {showTask && (

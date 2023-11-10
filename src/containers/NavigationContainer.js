@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Wrapper from "../components/common/Wrapper/Wrapper";
 import { ReactComponent as Logo } from "../assets/icons/logo.svg";
 import addIcon from "../assets/icons/add.svg";
+import logout from "../assets/icons/logout.svg";
 import DropDown from "../components/form/dropDown/DropDown";
 import ActionButton from "../components/navigation/ActionButton";
 import Navigation from "../components/navigation/Navigation";
@@ -11,6 +12,7 @@ import { createNewBoard, fetchActiveBoard } from "../store/board-actions";
 import Button from "../components/form/button/Button";
 import CreateNewBoard from "../components/appSideBar/CreateNewBoard";
 import EditDialog from "../components/common/editDialog/EditDialog";
+import { signOut } from "../store/auth-actions";
 
 export default function NavigationContainer() {
   const activeBoard = useSelector((state) => state.board.activeBoard);
@@ -38,9 +40,9 @@ export default function NavigationContainer() {
   return (
     <>
       <Navigation>
-        <Logo />
+        {/* <Logo /> */}
         <Wrapper
-          width="100%"
+          width="90%"
           justify="space-between"
           alignItems="center"
           margin="0 0 0 1em"
@@ -63,6 +65,12 @@ export default function NavigationContainer() {
             />
           )}
         </Wrapper>
+
+        <ActionButton
+          title="Logout"
+          icon={logout}
+          handler={() => dispatch(signOut())}
+        />
       </Navigation>
       {showAddTaskModal && <AddTaskContainer onClose={toggleAddTaskModal} />}
       {showCreate && (

@@ -20,7 +20,6 @@ export const createNewBoard = (title) => {
 };
 
 export const updateBoard = (payload) => {
-  console.log(payload);
   return async (dispatch) => {
     const updateHandler = async () => {
       return await axios.put(
@@ -73,7 +72,6 @@ export const createNewList = (payload) => {
 };
 
 export const updateList = (payload) => {
-  console.log(payload);
   return async (dispatch) => {
     const updateListHandler = async () => {
       return await axios.put(Routes.LIST, payload, {
@@ -175,6 +173,9 @@ export const updateCardData = (payload) => {
           checkList: payload.checkList,
           listId: payload.listId,
           cardId: payload._id,
+          priority: payload.priority,
+          due: payload.due,
+          labels: payload.labels,
         },
         {
           headers: { Authorization: "Bearer " + getTokenFromStorage() },

@@ -3,7 +3,7 @@ import FormInput from "../form/input/FormInput";
 import Wrapper from "../common/Wrapper/Wrapper";
 import Button from "../form/button/Button";
 
-export default function SignUpForm({ onSignup }) {
+export default function SignUpForm({ onSignup, redirect }) {
   const [firstNameValue, setFirstNameValue] = useState("");
   const [firstNameHasError, setFirstNameHasError] = useState(false);
   const [lastNameValue, setLastNameValue] = useState("");
@@ -50,8 +50,9 @@ export default function SignUpForm({ onSignup }) {
           firstName: firstNameValue,
           lastName: lastNameValue,
         },
-        resetForm
-      );
+        resetForm,
+        );
+        redirect()
     }
   };
 

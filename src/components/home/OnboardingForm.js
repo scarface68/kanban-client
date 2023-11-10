@@ -33,7 +33,7 @@ export default function OnboardingForm({ onSignup, onSignin }) {
       </Wrapper>
       <Wrapper width="100%" padding="2em 0 1em 0" justify="center">
         {!showForm && <SignInForm onSignin={onSignin} />}
-        {showForm && <SignUpForm onSignup={onSignup} />}
+        {showForm && <SignUpForm onSignup={onSignup} redirect={showSignInHandler} />}
       </Wrapper>
     </FormWrapper>
   );

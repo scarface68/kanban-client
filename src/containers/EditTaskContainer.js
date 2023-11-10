@@ -19,12 +19,17 @@ import { updateCardData } from "../store/board-actions";
 export default function EditTaskContainer({ onClose, task }) {
   const activeBoardList = useSelector((state) => state.board.activeBoardList);
   const [titleInput, setTitleInput] = useState(task.title);
-  const [subTaskList, setSubTaskList] = useState([""]);
+  const [priority, setPriority] = useState(task.priority);
+  const [dueDate, setDueDate] = useState(task.due);
+  const [labels, setLabels] = useState(task.labels);
+  const [subTaskList, setSubTaskList] = useState(task.checkList);
   const [descInput, setDescInput] = useState(task.description);
   const [statusInput, setStatusInput] = useState(null);
 
   const statusChangeHandler = (status) => setStatusInput(status);
   const titleChangeHandler = (e) => setTitleInput(e.target.value);
+  const priorityChangeHandler = (e) => setPriority(e.target.value);
+  const dueDateChangeHandler = (e) => setDueDate(e.target.value);
   const descChangeHandler = (e) => setDescInput(e.target.value);
   const dispatch = useDispatch();
 
@@ -47,6 +52,9 @@ export default function EditTaskContainer({ onClose, task }) {
       })),
       listId: statusInput.id,
       boardId: task.boardId,
+      priority,
+      due:dueDate,
+      labels,
     };
 
     dispatch(updateCardData(card));
@@ -82,14 +90,39 @@ export default function EditTaskContainer({ onClose, task }) {
               type="text"
               placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little"
               width="100%"
-              minHeight="150px"
+              minHeight="100px"
               value={descInput}
               onChange={descChangeHandler}
+            />
+             <FormInput
+              label="Priority"
+              type="text"
+              placeholder="e.g. high, mid, low"
+              width="100%"
+              value={priority}
+              onChange={priorityChangeHandler}
+            />
+            <FormInput
+              label="Due Date"
+              type="text"
+              placeholder="e.g. dd/mm/yyyy , 4th July 2021"
+              width="100%"
+              value={dueDate}
+              onChange={dueDateChangeHandler}
+            />
+            <SubTaskTitle>Labels</SubTaskTitle>
+            <EditSubTaskList
+              subTaskList={labels}
+              setSubTaskList={setLabels}
+              btnText={"Add new label"}
+              placeholderTxt={"e.g. assignment, chores, meeting"}
             />
             <SubTaskTitle>Subtasks</SubTaskTitle>
             <EditSubTaskList
               subTaskList={subTaskList}
               setSubTaskList={setSubTaskList}
+              btnText={"Add new sub task"}
+              placeholderTxt={"e.g. This is a subtask."}
               initialValue={statusInput?.value}
             />
             <StatusTitle>Status</StatusTitle>

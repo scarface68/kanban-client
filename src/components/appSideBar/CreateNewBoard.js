@@ -17,7 +17,7 @@ export default function CreateNewBoard({ handler, title }) {
       justify="flex-start"
     >
       {isDark ? <LayoutIconLight /> : <LayoutIconDark />}
-      <CreateNewTitle>{title ? title : "Create New Board"}</CreateNewTitle>
+      <CreateNewTitle>{title ? title : "Create New Project"}</CreateNewTitle>
     </Wrapper>
   );
 }

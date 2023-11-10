@@ -8,7 +8,7 @@ export const EditTaskPane = styled.section`
   display: flex;
   align-items: center;
   position: absolute;
-  top: 0px;
+  top: 300px;
   height: 100%;
   bottom: 0px;
   left: 0;

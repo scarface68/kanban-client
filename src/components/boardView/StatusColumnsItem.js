@@ -1,5 +1,6 @@
 import React from "react";
 import MoreOptions from "../common/moreOptions/MoreOptions";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import {
   StatusColumnsListItem,
   StatusColumnsListHeader,
@@ -15,6 +16,7 @@ export default function StatusColumnsItem({
   onTaskDelete,
   onListEdit,
   onListDelete,
+  provided,
 }) {
   const listEditHandler = () => {
     onListEdit({ id: dataSource._id, title: dataSource.title });
@@ -33,11 +35,14 @@ export default function StatusColumnsItem({
           ]}
         />
       </StatusColumnsListHeader>
-      <TaskList>
+
+      <TaskList {...provided.droppableProps} ref={provided.innerRef}>
         {dataSource.cards.map((item, index) => {
           return (
             <TaskListItem
               key={item._id}
+              idForKey={item._id}
+              index={index}
               dataSource={item}
               onTaskClick={onTaskClick}
               onTaskEdit={onTaskEdit}
@@ -45,6 +50,7 @@ export default function StatusColumnsItem({
             />
           );
         })}
+        {provided.placeholder}
       </TaskList>
     </StatusColumnsListItem>
   );

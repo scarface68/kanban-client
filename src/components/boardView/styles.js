@@ -25,6 +25,7 @@ export const StatusColumnsListHeader = styled.div`
 
 export const StatusColumnsListItem = styled.li`
   margin-left: 1em;
+  margin-right: 1.75em;
 `;
 
 export const StatusTitle = styled.p`
