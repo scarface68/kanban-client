@@ -44,3 +44,45 @@ This repo contains the frontend of the app. Backend repo is [here.](https://gith
 - Axios to handle HTTP requests
 - Helmetg HTTP headers
 - HTML, CSS, JSX
+
+## How to run the project locally
+
+Clone the frontend
+
+```bash
+  git clone https://github.com/scarface68/kanban-client.git
+```
+
+Start the frontend server
+
+```bash
+  npm install
+  npm start
+```
+
+Clone the backend
+
+```bash
+  git clone https://github.com/scarface68/kanban-server.git
+```
+
+Start the backend server
+
+```bash
+  npm install
+  node app.js
+```
+
+Generate .env files for both client and server
+
+In frontend add
+
+```bash
+  REACT_APP_BACKEND_URL=http://localhost:5000/
+```
+
+In backend add
+
+```bash
+  MONGODB_URI= add the url here
+```
