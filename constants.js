@@ -1,6 +1,5 @@
 // Desc: Constants for the application
-const HOST = process.env.REACT_APP_HOST_URL;
-
+const HOST = process.env.REACT_APP_BACKEND_URL;
 export const Routes = {
   AUTH: HOST + "auth",
   BOARD: HOST + "board",
