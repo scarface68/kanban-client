@@ -20,11 +20,11 @@ export default function HomeContainer({ onSignup, onSignin }) {
       <Header>
         <Wrapper alignItems="center" padding="0 1em">
           <Logo />
-          <HeaderLogoTitle>Kanban</HeaderLogoTitle>
+          <HeaderLogoTitle>TaskFlow</HeaderLogoTitle>
         </Wrapper>
         <Wrapper justify="space-between" minHeight="600px">
           <HeroSection direction="column">
-            <HeroTitle>Kanban.</HeroTitle>
+            <HeroTitle>TaskFlow.</HeroTitle>
             <HeroBody>Scarface68 Productions</HeroBody>
           </HeroSection>
           <OnboardingForm onSignup={onSignup} onSignin={onSignin} />
